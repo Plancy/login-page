@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --text:    #0C1421;
+    --muted:   #6b7280;
+    --accent:  #1E4AE9;
+    --brand:   #162D3A;
+    --input-bg:     #F7FBFF;
+    --input-border: #D4D7E3;
+    --social-bg:    #F3F9FA;
+    --divider:      #d0d7e3;
+
+    --r-md: 12px;  --r-lg: 16px;  --r-xl: 24px;
+
+    --font-ui:   "SF Pro Rounded", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: "Roboto", sans-serif;
+}
+
+body    { font-family: var(--font-ui); color: var(--text); min-height: 100vh;}
+button  { outline: none; font-family: var(--font-body); cursor: pointer; }
+a       { color: var(--accent); text-decoration: none; &:hover { text-decoration: underline; } }
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    min-height: 100vh;
+    padding: 32px;
+}
+
+.leftSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    max-width: 600px;
+}
+
+.rightSide {
+    flex: 1;
+    max-width: 816px;
+    aspect-ratio: 816 / 900;
+    background: url("./img/Login Art.svg") center / cover no-repeat;
+    border-radius: var(--r-xl);
+    pointer-events: none;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    width: 100%;
+    max-width: 388px;
+
+    & > div:first-child {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        & h1 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; }
+        & p  { font-size: 16px; color: var(--muted); line-height: 1.5; }
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-family: var(--font-body);
+}
+
+.email,
+.password { display: flex; flex-direction: column; gap: 8px; }
+
+label { font-size: 16px; font-weight: 500; }
+
+input {
+    height: 48px;
+    padding: 0 16px;
+    border-radius: var(--r-md);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    font-size: 16px;
+    font-family: var(--font-body);
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &::placeholder { color: var(--muted); }
+    &:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgb(30 74 233 / 0.1);
+    }
+}
+
+.forgot { display: flex; justify-content: flex-end; & a { font-size: 14px; } }
+
+button[type="submit"] {
+    height: 52px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: var(--r-lg);
+    background: var(--brand);
+    transition: background 0.2s, transform 0.1s;
+
+    &:hover  { background: #1e3d4f; }
+    &:active { transform: scale(0.99); }
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--muted);
+
+    &::before, &::after { content: ''; flex: 1; height: 1px; background: var(--divider); }
+}
+
+.socialSignin {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    & .google,
+    & .facebook {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 52px;
+        border: none;
+        border-radius: var(--r-md);
+        background: var(--social-bg);
+        font-size: 16px;
+        color: var(--text);
+        transition: background 0.2s;
+
+        &:hover { background: #e8f0f2; }
+        &::before {
+            content: '';
+            width: 24px; height: 24px;
+            background: center / contain no-repeat;
+            margin-right: 12px;
+        }
+    }
+
+    & .google::before   { background-image: url(./img/google.svg); }
+    & .facebook::before { background-image: url(./img/facebook.svg); }
+}
+
+.signUp   { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 8px; & a { font-weight: 500; } }
+.reserved { text-align: center; font-size: 12px; color: var(--muted); }
+
+@media (max-width: 1024px) {
+    .rightSide { display: none; }
+    .leftSide  { max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .container { padding: 24px 16px; }
+    .loginForm  { gap: 32px; }
+}
